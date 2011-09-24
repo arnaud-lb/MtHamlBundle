@@ -1,0 +1,53 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="mthaml.class">MtHaml\Environment</parameter>
+        <parameter key="mthaml.twig.lexer.class">MtHamlBundle\Twig\Lexer</parameter>
+        <parameter key="templating.engine.mthaml.class">MtHamlBundle\MtHamlEngine</parameter>
+        <parameter key="mthaml.cache_warmer.class">MtHamlBundle\CacheWarmer\TemplateCacheCacheWarmer</parameter>
+    </parameters>
+
+    <services>
+
+        <service id="mthaml" class="%mthaml.class%">
+            <argument>twig</argument>
+            <argument type="collection">
+                <argument key="enable_escaper">false</argument>
+            </argument>
+        </service>
+
+        <service id="mthaml.twig.lexer" class="%mthaml.twig.lexer.class%">
+            <argument type="service" id="mthaml" />
+        </service>
+
+        <service id="templating.engine.mthaml" class="%templating.engine.mthaml.class%" public="false">
+            <argument type="service" id="twig" />
+            <argument type="service" id="templating.name_parser" />
+            <argument type="service" id="templating.globals" />
+        </service>
+
+        <service id="templating.engine.haml" alias="templating.engine.mthaml" />
+
+        <service id="mthaml.twig" class="%twig.class%" factory-class="MtHamlBundle\Twig\Factory" factory-method="factory">
+            <argument></argument>
+            <argument type="service" id="mthaml.twig.lexer" />
+        </service>
+
+        <service id="mthaml.cache_warmer" class="%mthaml.cache_warmer.class%" public="false">
+            <tag name="kernel.cache_warmer" />
+            <argument type="service" id="service_container" />
+            <argument type="service" id="templating.finder" />
+        </service>
+
+        <service id="assetic.haml_formula_loader" class="%assetic.cached_formula_loader.class%" public="false">
+            <tag name="assetic.formula_loader" alias="haml" />
+            <argument type="service" id="assetic.twig_formula_loader.real" />
+            <argument type="service" id="assetic.config_cache" />
+            <argument>%kernel.debug%</argument>
+        </service>
+    </services>
+</container>
