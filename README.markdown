@@ -6,10 +6,8 @@
 
 ## Features
 
-- **Acts as a Twig preprocessor**
-  Supports Twig functions, filters, macros, blocks, inheritance, expressions and every Twig features
-- **High performance**  
-  Templates are cached, no parsing or runtime overhead.
+- **Acts as a Twig preprocessor**: Supports Twig functions, filters, macros, blocks, inheritance, expressions and every Twig features
+- **High performance**: Templates are cached, no parsing or runtime overhead.
 - **HAML syntax** supported by editors
 
 ## Installation
