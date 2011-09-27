@@ -1,3 +1,16 @@
+# MtHaml Bundle
+
+[HAML][haml] Symfony bundle using the [MtHaml PHP HAML parser][mthaml].
+
+
+
+## Features
+
+- **Acts as a Twig preprocessor**
+  Supports Twig functions, filters, macros, blocks, inheritance, expressions and every Twig features
+- **High performance**  
+  Templates are cached, no parsing or runtime overhead.
+- **HAML syntax** supported by editors
 
 ## Installation
 
@@ -103,4 +116,10 @@ public function bazAction() {
 }
 ```
 
+#### Syntax
+
+See [MtHaml][mthaml] docs
+
+[haml]: http://haml-lang.com/
+[mthaml]: https://github.com/arnaud-lb/MtHaml
 
