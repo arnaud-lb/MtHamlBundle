@@ -1,0 +1,23 @@
+{
+    "name": "mthaml/mthaml-bundle",
+    "type": "symfony-bundle",
+    "description": "This Bundle provides a HAML templating engine",
+    "keywords": ["HAML"],
+    "homepage": "https://github.com/arnaud-lb/MtHamlBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Arnaud Le Blanc",
+            "email": "arnaud.lb@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.2",
+        "mthaml/mthaml": "*"
+    },
+    "autoload": {
+        "psr-0": {
+            "MtHamlBundle": ""
+        }
+    }
+}
