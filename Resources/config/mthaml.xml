@@ -25,9 +25,8 @@
         </service>
 
         <service id="templating.engine.mthaml" class="%templating.engine.mthaml.class%" public="false">
-            <argument type="service" id="twig" />
+            <argument type="service" id="templating.engine.twig" />
             <argument type="service" id="templating.name_parser" />
-            <argument type="service" id="templating.globals" />
         </service>
 
         <service id="templating.engine.haml" alias="templating.engine.mthaml" />
