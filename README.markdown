@@ -115,6 +115,15 @@ public function bazAction() {
 }
 ```
 
+#### With FOSRestBundle:
+
+``` php
+/**
+ * @View(engine="haml")
+ */
+public function fooAction() {
+```
+
 #### Syntax
 
 See [MtHaml][mthaml] docs
