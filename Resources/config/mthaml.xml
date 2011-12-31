@@ -9,6 +9,7 @@
         <parameter key="mthaml.twig.lexer.class">MtHamlBundle\Twig\Lexer</parameter>
         <parameter key="templating.engine.mthaml.class">MtHamlBundle\MtHamlEngine</parameter>
         <parameter key="mthaml.cache_warmer.class">MtHamlBundle\CacheWarmer\TemplateCacheCacheWarmer</parameter>
+        <parameter key="mthaml.translation.extractor.file.haml.class">MtHamlBundle\Translation\Extractor\File\HamlFileExtractor</parameter>
     </parameters>
 
     <services>
@@ -47,6 +48,13 @@
             <argument type="service" id="assetic.twig_formula_loader.real" />
             <argument type="service" id="assetic.config_cache" />
             <argument>%kernel.debug%</argument>
+        </service>
+
+        <service id="mthaml.translation.extractor.file.haml" class="%mthaml.translation.extractor.file.haml.class%" parent="jms_translation.extractor.file.twig_extractor" public="false">
+            <call method="setTwig">
+                <argument type="service" id="twig" />
+            </call>
+            <tag name="jms_translation.file_visitor" />
         </service>
     </services>
 </container>
