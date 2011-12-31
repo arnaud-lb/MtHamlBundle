@@ -7,6 +7,7 @@
 ## Features
 
 - **Acts as a Twig preprocessor**: Supports Twig functions, filters, macros, blocks, inheritance, expressions and every Twig features
+- **Mix Twig and HAML templates**: You can include, extend, use and import Twig templates from HAML templates, and vice versa.
 - **High performance**: Templates are compiled to PHP code and cached, no parsing or runtime overhead.
 - **HAML syntax** supported by editors
 
