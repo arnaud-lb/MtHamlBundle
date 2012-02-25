@@ -47,5 +47,17 @@ class MtHamlExtension extends Extension
             new DirectoryResourceDefinition('', 'haml', array($container->getParameter('kernel.root_dir').'/Resources/views'))
         );
 
+        $this->loadJmsTranslationConfig($configs, $container, $loader);
+    }
+
+    protected function loadJmsTranslationConfig(array $configs, ContainerBuilder $container, XmlFileLoader $loader)
+    {
+        $bundles = $container->getParameter('kernel.bundles');
+
+        if (!isset($bundles['JMSTranslationBundle'])) {
+            return;
+        }
+
+        $loader->load('jms-translation.xml');
     }
 }

@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="mthaml.translation.extractor.file.haml.class">MtHamlBundle\Translation\Extractor\File\HamlFileExtractor</parameter>
+    </parameters>
+
+    <services>
+        <service id="mthaml.translation.extractor.file.haml" class="%mthaml.translation.extractor.file.haml.class%" parent="jms_translation.extractor.file.twig_extractor" public="false">
+            <call method="setTwig">
+                <argument type="service" id="twig" />
+            </call>
+            <tag name="jms_translation.file_visitor" />
+        </service>
+    </services>
+</container>
