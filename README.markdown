@@ -107,6 +107,17 @@ mt_haml:
 public function fooAction() {
 ```
 
+#### With the @Haml() annotation:
+
+The `@Haml` annotation is a sub class of `@Template` with `engine` set to `haml` by default.
+
+``` php
+/**
+ * @Haml
+ */
+public function fooAction() {
+```
+
 #### With ->render()
 
 ``` php
