@@ -48,5 +48,10 @@
             <argument type="service" id="assetic.config_cache" />
             <argument>%kernel.debug%</argument>
         </service>
+
+        <service id="mthaml.twig.extension" class="%mthaml.twig.extension.class%" public="false">
+            <tag name="twig.extension" alias="mthaml" />
+        </service>
+
     </services>
 </container>
