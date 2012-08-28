@@ -9,6 +9,7 @@
         <parameter key="mthaml.twig.lexer.class">MtHamlBundle\Twig\Lexer</parameter>
         <parameter key="templating.engine.mthaml.class">MtHamlBundle\MtHamlEngine</parameter>
         <parameter key="mthaml.cache_warmer.class">MtHamlBundle\CacheWarmer\TemplateCacheCacheWarmer</parameter>
+        <parameter key="mthaml.twig.extension.class">MtHaml\Support\Twig\Extension</parameter>
     </parameters>
 
     <services>
