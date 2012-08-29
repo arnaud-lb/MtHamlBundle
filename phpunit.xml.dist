@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="../../../app/bootstrap.php.cache">
+<phpunit bootstrap="Tests/bootstrap.php">
   <php>
     <!-- <server name="SYMFONY" value="/path/to/symfony" /> -->
   </php>

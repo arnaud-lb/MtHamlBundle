@@ -1,6 +1,7 @@
 <?php
 
 namespace MtHamlBundle\Controller\Annotations;
+
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 /**
