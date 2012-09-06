@@ -135,10 +135,22 @@ public function bazAction() {
 public function fooAction() {
 ```
 
-#### Syntax
+## Syntax
 
 See [MtHaml][mthaml] docs
 
 [haml]: http://haml-lang.com/
 [mthaml]: https://github.com/arnaud-lb/MtHaml
+
+## Commands
+
+### mthaml:debug:dump
+
+The mthaml:debug:dump command compiles a HAML templates into Twig and displays the resulting Twig template.
+
+For debug purposes.
+
+Example:
+
+    php ./app/console mthaml:debug:dump AcmeDemoBundle:Demo:index.html.haml
 
