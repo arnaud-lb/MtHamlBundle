@@ -13,7 +13,7 @@
     ],
     "require": {
         "php": ">=5.3.2",
-        "mthaml/mthaml": "*"
+        "mthaml/mthaml": ">=1.1.0"
     },
     "require-dev": {
         "symfony/symfony": "2.1.*@beta",
