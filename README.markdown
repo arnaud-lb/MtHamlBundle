@@ -19,6 +19,18 @@ Ultimately, the MtHaml files should be downloaded to the vendor/MtHaml directory
 
 This can be done in several ways, depending on your preference. The first method is the standard Symfony2 method.
 
+#### Using Composer
+
+Add the following dependency to your composer.json:
+
+``` json
+"require": {
+    "mthaml/mthaml-bundle": "dev-master"
+}
+```
+
+(You can skip Step 2 if you are using this method as Composer will handle autoloading for you.)
+
 #### Using the vendors script
 
 Add the following lines in your deps file:
