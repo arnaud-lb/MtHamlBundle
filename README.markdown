@@ -21,12 +21,8 @@ This can be done in several ways, depending on your preference. The first method
 
 #### Using Composer
 
-Add the following dependency to your composer.json:
-
-``` json
-"require": {
-    "mthaml/mthaml-bundle": "dev-master"
-}
+```
+$ composer require mthaml/mthaml-bundle:dev-master
 ```
 
 (You can skip Step 2 if you are using this method as Composer will handle autoloading for you.)
@@ -61,6 +57,8 @@ $ git submodule update --init
 ```
 
 ### Step 2: Configure the Autoloader
+
+You can skip this step if you used composer to install the bundle.
 
 Add the `MtHaml` and `MtHamlBundle` namespaces to your autoloader:
 
