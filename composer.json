@@ -16,8 +16,8 @@
         "mthaml/mthaml": ">=1.1.0"
     },
     "require-dev": {
-        "symfony/symfony": "2.1.*@beta",
-        "sensio/framework-extra-bundle": "dev-master"
+        "symfony/symfony": "2.1.*",
+        "sensio/framework-extra-bundle": "2.1.*"
     },
     "autoload": {
         "psr-0": {
