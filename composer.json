@@ -24,5 +24,10 @@
             "MtHamlBundle": ""
         }
     },
-    "target-dir": "MtHamlBundle"
+    "target-dir": "MtHamlBundle",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.2-dev"
+        }
+    }
 }
