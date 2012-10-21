@@ -2,7 +2,7 @@
 
 [HAML][haml] Symfony bundle using the [MtHaml PHP HAML parser][mthaml].
 
-
+[![Build Status](https://secure.travis-ci.org/arnaud-lb/MtHamlBundle.png)](http://travis-ci.org/arnaud-lb/MtHamlBundle)
 
 ## Features
 
