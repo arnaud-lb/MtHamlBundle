@@ -18,6 +18,6 @@ class RenderController extends Controller
      */
     public function renderUsingTemplateAnnotationAction()
     {
-        return [];
+        return array();
     }
 }
