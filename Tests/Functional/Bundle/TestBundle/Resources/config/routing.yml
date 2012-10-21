@@ -1,0 +1,6 @@
+render:
+    pattern: /render
+    defaults: { _controller: TestBundle:Render:render }
+renderUsingTemplateAnnotation:
+    pattern: /renderUsingTemplateAnnotation
+    defaults: { _controller: TestBundle:Render:renderUsingTemplateAnnotation }
