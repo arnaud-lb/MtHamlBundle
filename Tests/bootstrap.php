@@ -8,4 +8,3 @@ AnnotationRegistry::registerLoader(function($class) {
     // call any registered autoloader
     return class_exists($class);
 });
-

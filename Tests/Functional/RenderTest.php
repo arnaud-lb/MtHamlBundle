@@ -10,33 +10,30 @@ class RenderTest extends WebTestCase
     /**
      * @dataProvider getConfigs
      */
-    public function testRender($path, $insulate)
+    public function testRender($path, $insulate, $bundlesFile = 'bundles.php')
     {
-        $client = $this->createClient(array('test_case' => 'Render', 'root_config' => 'config.yml'));
+        $client = $this->createClient(array('test_case' => 'Render', 'root_config' => 'config.yml', 'bundles_file' => $bundlesFile));
         if ($insulate) {
             $client->insulate();
         }
 
         $crawler = $client->request('GET', $path);
+
         $this->assertSame(200, $client->getResponse()->getStatusCode(), $client->getResponse());
         $this->assertSame(1, $crawler->filter('p.render.ok')->count());
     }
 
     public function getConfigs()
     {
-        $configs = array(
-            'renderCanRenderHamlTemplates' => array('/render'),
-            'templateAnnotationCanUseHamlEngine' => array('/renderUsingTemplateAnnotation'),
-        );
-
         $ret = array();
 
-        foreach ($configs as $key => $config) {
-            $config[1] = false;
-            $ret[$key] = $config;
-            $config[1] = true;
-            $ret[$key."_insulated"] = $config;
-        };
+        foreach (array('/render', '/renderUsingTemplateAnnotation') as $path) {
+            foreach (array(true, false) as $insulate) {
+                $ret[] = array($path, $insulate, 'bundles.php');
+            }
+        }
+        $ret[] = array('/render', true, 'minimal_bundles.php');
+        $ret[] = array('/render', false, 'minimal_bundles.php');
 
         return $ret;
     }
