@@ -43,13 +43,6 @@
             <argument type="service" id="templating.finder" />
         </service>
 
-        <service id="assetic.haml_formula_loader" class="%assetic.cached_formula_loader.class%" public="false">
-            <tag name="assetic.formula_loader" alias="haml" />
-            <argument type="service" id="assetic.twig_formula_loader.real" />
-            <argument type="service" id="assetic.config_cache" />
-            <argument>%kernel.debug%</argument>
-        </service>
-
         <service id="mthaml.twig.extension" class="%mthaml.twig.extension.class%" public="false">
             <tag name="twig.extension" alias="mthaml" />
         </service>

@@ -29,8 +29,19 @@ class MtHamlExtension extends Extension
             'MtHaml\Environment',
         ));
 
-        // bundle and kernel resources
-        $bundles = $container->getParameterBag()->get('kernel.bundles');
+        $this->loadAsseticConfig($configs, $container, $loader);
+        $this->loadJmsTranslationConfig($configs, $container, $loader);
+    }
+
+    protected function loadAsseticConfig(array $configs, ContainerBuilder $container, XmlFileLoader $loader)
+    {
+        $bundles = $container->getParameter('kernel.bundles');
+
+        if (!isset($bundles['AsseticBundle'])) {
+            return;
+        }
+
+        $loader->load('assetic.xml');
 
         foreach ($bundles as $bundle => $bundleClass) {
             $rc = new \ReflectionClass($bundleClass);
@@ -42,12 +53,11 @@ class MtHamlExtension extends Extension
                 ))
             );
         }
+
         $container->setDefinition(
             'assetic.mthaml_directory_resource.kernel',
             new DirectoryResourceDefinition('', 'haml', array($container->getParameter('kernel.root_dir').'/Resources/views'))
         );
-
-        $this->loadJmsTranslationConfig($configs, $container, $loader);
     }
 
     protected function loadJmsTranslationConfig(array $configs, ContainerBuilder $container, XmlFileLoader $loader)
