@@ -5,5 +5,6 @@ php:
 env:
   - SYMFONY_VERSION="2.1.*" FRAMEWORK_EXTRA_BUNDLE_VERSION="*"
   - SYMFONY_VERSION="2.2.*" FRAMEWORK_EXTRA_BUNDLE_VERSION="*"
+  - SYMFONY_VERSION="2.3.*" FRAMEWORK_EXTRA_BUNDLE_VERSION="*"
 before_script:
   - composer require --dev --prefer-dist symfony/symfony:${SYMFONY_VERSION} sensio/framework-extra-bundle:${FRAMEWORK_EXTRA_BUNDLE_VERSION}
