@@ -7,7 +7,7 @@ class HamlAnnotationTest extends \PHPUnit_Framework_TestCase
     public function testAnnotation()
     {
         $parser = new \Doctrine\Common\Annotations\DocParser();
-        $parser->setImports(array('haml' => '\\MtHamlBundle\\Controller\\Annotations\\Haml'));
+        $parser->setImports(array('haml' => 'MtHamlBundle\\Controller\\Annotations\\Haml'));
         $annotations = $parser->parse("/**\n* @Haml()\n*/");
         $this->assertEquals(1, count($annotations));
         $this->_assertHamlAnnotation($annotations[0]);
@@ -31,7 +31,7 @@ class HamlAnnotationTest extends \PHPUnit_Framework_TestCase
 
     protected function _assertHamlAnnotation($hamlTemplateConfiguration)
     {
-        $this->assertInstanceOf('\\MtHamlBundle\\Controller\\Annotations\\Haml', $hamlTemplateConfiguration);
+        $this->assertInstanceOf('MtHamlBundle\\Controller\\Annotations\\Haml', $hamlTemplateConfiguration);
         $this->assertEquals('template', $hamlTemplateConfiguration->getAliasName());
         $this->assertEquals('haml', $hamlTemplateConfiguration->getEngine());
     }

@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="assetic.haml_formula_loader" class="%assetic.cached_formula_loader.class%" public="false">
+            <tag name="assetic.formula_loader" alias="haml" />
+            <argument type="service" id="assetic.twig_formula_loader.real" />
+            <argument type="service" id="assetic.config_cache" />
+            <argument>%kernel.debug%</argument>
+        </service>
+
+    </services>
+</container>

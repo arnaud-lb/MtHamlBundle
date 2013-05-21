@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit bootstrap="Tests/bootstrap.php">
-  <php>
-    <!-- <server name="SYMFONY" value="/path/to/symfony" /> -->
-  </php>
   <testsuites>
-    <testsuite name="FacebookBundle Test Suite">
+    <testsuite name="MtHamlBundle Test Suite">
       <directory suffix="Test.php">./Tests</directory>
     </testsuite>
   </testsuites>

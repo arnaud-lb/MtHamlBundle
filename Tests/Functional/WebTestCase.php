@@ -52,7 +52,8 @@ class WebTestCase extends BaseWebTestCase
             $options['test_case'],
             isset($options['root_config']) ? $options['root_config'] : 'config.yml',
             isset($options['environment']) ? $options['environment'] : 'frameworkbundletest'.strtolower($options['test_case']),
-            isset($options['debug']) ? $options['debug'] : true
+            isset($options['debug']) ? $options['debug'] : true,
+            isset($options['bundles_file']) ? $options['bundles_file'] : 'bundles.php'
         );
     }
 }

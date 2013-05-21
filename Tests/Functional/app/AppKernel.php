@@ -5,6 +5,11 @@ namespace MtHamlBundle\Tests\Functional;
 // get the autoload file
 require __DIR__ . "/../../../vendor/autoload.php";
 
+\Doctrine\Common\Annotations\AnnotationRegistry::registerLoader(function($class) {
+    // call any registered autoloader
+    return class_exists($class);
+});
+
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpKernel\Kernel;
@@ -18,8 +23,9 @@ class AppKernel extends Kernel
 {
     private $testCase;
     private $rootConfig;
+    private $bundlesFile;
 
-    public function __construct($testCase, $rootConfig, $environment, $debug)
+    public function __construct($testCase, $rootConfig, $environment, $debug, $bundlesFile)
     {
         if (!is_dir(__DIR__.'/'.$testCase)) {
             throw new \InvalidArgumentException(sprintf('The test case "%s" does not exist.', $testCase));
@@ -32,12 +38,14 @@ class AppKernel extends Kernel
         }
         $this->rootConfig = $rootConfig;
 
+        $this->bundlesFile = $bundlesFile;
+
         parent::__construct($environment, $debug);
     }
 
     public function registerBundles()
     {
-        if (!file_exists($filename = $this->getRootDir().'/'.$this->testCase.'/bundles.php')) {
+        if (!file_exists($filename = $this->getRootDir().'/'.$this->testCase.'/'.$this->bundlesFile)) {
             throw new \RuntimeException(sprintf('The bundles file "%s" does not exist.', $filename));
         }
 
@@ -70,7 +78,7 @@ class AppKernel extends Kernel
 
     public function serialize()
     {
-        return serialize(array($this->testCase, $this->rootConfig, $this->getEnvironment(), $this->isDebug()));
+        return serialize(array($this->testCase, $this->rootConfig, $this->getEnvironment(), $this->isDebug(), $this->bundlesFile));
     }
 
     public function unserialize($str)
