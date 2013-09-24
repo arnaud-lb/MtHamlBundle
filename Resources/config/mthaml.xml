@@ -19,6 +19,7 @@
             <argument type="collection">
                 <argument key="enable_escaper">false</argument>
             </argument>
+            <argument type="collection"></argument>
         </service>
 
         <service id="mthaml.twig.lexer" class="%mthaml.twig.lexer.class%">
@@ -45,6 +46,7 @@
 
         <service id="mthaml.twig.extension" class="%mthaml.twig.extension.class%" public="false">
             <tag name="twig.extension" alias="mthaml" />
+            <argument type="service" id="mthaml" />
         </service>
 
     </services>
