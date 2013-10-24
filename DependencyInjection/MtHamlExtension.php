@@ -4,8 +4,8 @@ namespace MtHamlBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
+use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Bundle\AsseticBundle\DependencyInjection\DirectoryResourceDefinition;
 
@@ -19,18 +19,32 @@ class MtHamlExtension extends Extension
      */
     public function load(array $configs, ContainerBuilder $container)
     {
+        $configs = $this->processConfiguration($this->getConfiguration($configs, $container), $configs);
+
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('mthaml.xml');
 
-        $configuration = new Configuration();
-        $config = $this->processConfiguration($configuration, $configs);
+        $filters = array();
+        foreach ($configs['filters'] as $name => $filter) {
+            if (!$filter['enabled']) {
+                $filters[$name] = false;
+                continue;
+            }
+
+            if (isset($filter['service'])) {
+                $filters[$name] = new Reference($filter['service']);
+            } else {
+                $filters[$name] = $filter['class'];
+            }
+        }
+        $container->findDefinition('mthaml')->replaceArgument(2, $filters);
+
+        $this->loadAsseticConfig($configs, $container, $loader);
+        $this->loadJmsTranslationConfig($configs, $container, $loader);
 
         $this->addClassesToCompile(array(
             'MtHaml\Environment',
         ));
-
-        $this->loadAsseticConfig($configs, $container, $loader);
-        $this->loadJmsTranslationConfig($configs, $container, $loader);
     }
 
     protected function loadAsseticConfig(array $configs, ContainerBuilder $container, XmlFileLoader $loader)
