@@ -20,13 +20,16 @@ class FilterPass implements CompilerPassInterface
         }
 
         $filters = array();
-        foreach ($container->findTaggedServiceIds('mthaml.filter') as $id => $attributes) {
-            if (!isset($attributes[0]['name'])) {
-                throw new \InvalidArgumentException(sprintf('Tag "mthaml.filter" in the service "%s" must contain the name of the filter.', $id));
+        foreach ($container->findTaggedServiceIds('mthaml.filter') as $id => $tags) {
+            foreach ($tags as $tag) {
+                if (!isset($tag['alias'])) {
+                    throw new \InvalidArgumentException(sprintf('Tag "mthaml.filter" in the service "%s" must contain the alias of the filter.', $id));
+                }
+                $filters[$tag['alias']] = new Reference($id);
             }
-            $filters[$attributes[0]['name']] = new Reference($id);
         }
 
-        $container->getDefinition('mthaml')->replaceArgument(2, $filters);
+        $mthamlDefinition = $container->findDefinition('mthaml');
+        $mthamlDefinition->replaceArgument(2, array_filter($mthamlDefinition->getArgument(2) + $filters));
     }
 }
