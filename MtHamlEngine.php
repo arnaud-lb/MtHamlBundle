@@ -3,10 +3,8 @@
 namespace MtHamlBundle;
 
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
-use Symfony\Bundle\FrameworkBundle\Templating\GlobalVariables;
 use Symfony\Component\Templating\TemplateNameParserInterface;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Bundle\TwigBundle\TwigEngine;
 
 /**
@@ -50,11 +48,6 @@ class MtHamlEngine implements EngineInterface
     public function renderResponse($view, array $parameters = array(), Response $response = null)
     {
         return $this->twigEngine->renderResponse($view, $parameters, $response);
-    }
-
-    public function load($name)
-    {
-        return $this->twigEngine->load($name);
     }
 }
 
