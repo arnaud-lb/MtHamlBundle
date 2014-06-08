@@ -22,7 +22,7 @@ class MtHamlExtensionTest extends \PHPUnit_Framework_TestCase
         $this->extension->load(array(), $container);
 
         $this->assertTrue($container->hasDefinition('mthaml'));
-        $this->assertTrue($container->hasDefinition('mthaml.twig'));
+        $this->assertTrue($container->hasDefinition('mthaml.twig.loader'));
         $this->assertTrue($container->hasDefinition('templating.engine.mthaml'));
         $this->assertTrue($container->hasAlias('templating.engine.haml'));
 

@@ -6,10 +6,10 @@
 
     <parameters>
         <parameter key="mthaml.class">MtHaml\Environment</parameter>
-        <parameter key="mthaml.twig.lexer.class">MtHamlBundle\Twig\Lexer</parameter>
         <parameter key="templating.engine.mthaml.class">MtHamlBundle\MtHamlEngine</parameter>
         <parameter key="mthaml.cache_warmer.class">MtHamlBundle\CacheWarmer\TemplateCacheCacheWarmer</parameter>
         <parameter key="mthaml.twig.extension.class">MtHaml\Support\Twig\Extension</parameter>
+        <parameter key="mthaml.twig.loader.class">MtHaml\Support\Twig\Loader</parameter>
     </parameters>
 
     <services>
@@ -22,10 +22,6 @@
             <argument type="collection"></argument>
         </service>
 
-        <service id="mthaml.twig.lexer" class="%mthaml.twig.lexer.class%">
-            <argument type="service" id="mthaml" />
-        </service>
-
         <service id="templating.engine.mthaml" class="%templating.engine.mthaml.class%" public="false">
             <argument type="service" id="templating.engine.twig" />
             <argument type="service" id="templating.name_parser" />
@@ -33,9 +29,9 @@
 
         <service id="templating.engine.haml" alias="templating.engine.mthaml" />
 
-        <service id="mthaml.twig" class="%twig.class%" factory-class="MtHamlBundle\Twig\Factory" factory-method="factory">
+        <service id="mthaml.twig.loader" class="%mthaml.twig.loader.class%">
+            <argument type="service" id="mthaml" />
             <argument></argument>
-            <argument type="service" id="mthaml.twig.lexer" />
         </service>
 
         <service id="mthaml.cache_warmer" class="%mthaml.cache_warmer.class%" public="false">
