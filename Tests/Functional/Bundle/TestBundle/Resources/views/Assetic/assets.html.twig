@@ -1,0 +1,7 @@
+{% javascripts '@TestBundle/Resources/public/js/script.js' output='twig.js' %}
+<script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+
+{% stylesheets '@TestBundle/Resources/public/css/style.css' output='twig.css' %}
+<link rel="stylesheet" href="{{ asset_url }}" />
+{% endstylesheets %}

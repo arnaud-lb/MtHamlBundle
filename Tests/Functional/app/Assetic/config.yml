@@ -1,0 +1,18 @@
+services:
+    logger: { class: Symfony\Component\HttpKernel\Log\NullLogger }
+
+    twig.extension.form:
+        class: stdClass
+        public: false
+
+framework:
+    secret:        test
+    router:
+        resource:  ~
+    session:
+        storage_id: session.storage.mock_file
+    templating:
+        engines: ['twig', 'haml']
+
+assetic:
+    use_controller: false
