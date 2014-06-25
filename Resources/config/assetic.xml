@@ -4,14 +4,25 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <services>
+    <parameters>
+        <parameter key="assetic.haml_formula_loader.class">MtHamlBundle\Assetic\HamlFormulaLoader</parameter>
+    </parameters>
 
+    <services>
         <service id="assetic.haml_formula_loader" class="%assetic.cached_formula_loader.class%" public="false">
             <tag name="assetic.formula_loader" alias="haml" />
-            <argument type="service" id="assetic.twig_formula_loader.real" />
+            <tag name="assetic.templating.haml" />
+            <argument type="service" id="assetic.haml_formula_loader.real" />
             <argument type="service" id="assetic.config_cache" />
             <argument>%kernel.debug%</argument>
         </service>
 
+        <service id="assetic.haml_formula_loader.real" class="%assetic.haml_formula_loader.class%" public="false">
+            <tag name="assetic.templating.haml" />
+            <tag name="monolog.logger" channel="assetic" />
+            <argument type="service" id="mthaml" />
+            <argument type="service" id="assetic.twig_formula_loader" />
+            <argument type="service" id="logger" on-invalid="ignore" />
+        </service>
     </services>
 </container>
