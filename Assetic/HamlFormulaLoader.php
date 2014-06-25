@@ -5,7 +5,7 @@ namespace MtHamlBundle\Assetic;
 use Assetic\Factory\Loader\FormulaLoaderInterface;
 use Assetic\Factory\Resource\ResourceInterface;
 use MtHaml\Environment;
-use Psr\Log\LoggerInterface;
+use Symfony\Component\HttpKernel\Log\LoggerInterface;
 
 /**
  * Loads asset formulae from Haml templates.
@@ -35,7 +35,7 @@ class HamlFormulaLoader implements FormulaLoaderInterface
             });
         } catch(\Exception $e) {
             if ($this->logger) {
-                $this->logger->error(sprintf('The template "%s" contains an error: %s', $resource, $e->getMessage()));
+                $this->logger->err(sprintf('The template "%s" contains an error: %s', $resource, $e->getMessage()));
             }
 
             return array();
