@@ -34,7 +34,7 @@
     "target-dir": "MtHamlBundle",
     "extra": {
         "branch-alias": {
-            "dev-master": "1.2-dev"
+            "dev-master": "1.4-dev"
         }
     }
 }
