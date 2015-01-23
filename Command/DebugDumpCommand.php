@@ -30,14 +30,8 @@ EOF
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $container = $this->getContainer();
-        $loader = $container->get('twig.loader');
-        $env = $container->get('mthaml');
-
-        $templateName = $input->getArgument('template-name');
-
-        $source = $loader->getSource($templateName);
-
-        $output->write($env->compileString($source, $templateName));
+        $output->write(
+            $this->getContainer()->get('twig.loader')->getSource($input->getArgument('template-name'))
+        );
     }
 }
