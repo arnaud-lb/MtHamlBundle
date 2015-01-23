@@ -13,6 +13,9 @@
             <call method="setTwig">
                 <argument type="service" id="twig" />
             </call>
+            <call method="setMtHaml">
+                <argument type="service" id="mthaml" />
+            </call>
             <tag name="jms_translation.file_visitor" />
         </service>
     </services>
