@@ -1,5 +1,5 @@
 services:
-    logger: { class: Symfony\Component\HttpKernel\Log\NullLogger }
+    logger: { class: Psr\Log\NullLogger }
 
     twig.extension.form:
         class: stdClass
@@ -8,11 +8,12 @@ services:
 framework:
     test: ~
     secret:        test
-    router:        
+    router:
         resource: "%kernel.root_dir%/%kernel.test_case%/routing.yml"
     session:
         storage_id: session.storage.mock_file
     templating:
         engines: ['twig']
 
-sensio_framework_extra: ~
+sensio_framework_extra:
+    security: { annotations: false }

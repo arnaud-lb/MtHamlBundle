@@ -1,5 +1,5 @@
 services:
-    logger: { class: Symfony\Component\HttpKernel\Log\NullLogger }
+    logger: { class: Psr\Log\NullLogger }
 
     twig.extension.form:
         class: stdClass
