@@ -1,13 +1,18 @@
+sudo: false
 language: php
 php:
   - 5.3
-  - 5.4
-  - 5.5
   - 5.6
   - 7
 env:
-  - SYMFONY_VERSION="2.3.*" FRAMEWORK_EXTRA_BUNDLE_VERSION="*"
-  - SYMFONY_VERSION="2.4.*" FRAMEWORK_EXTRA_BUNDLE_VERSION="*"
-  - SYMFONY_VERSION="2.5.*" FRAMEWORK_EXTRA_BUNDLE_VERSION="*"
+  - SYMFONY_VERSION="2.3.*"
+  - SYMFONY_VERSION="2.8.*"
+  - SYMFONY_VERSION="3.0.*"
+matrix:
+  exclude:
+    - php: 5.3
+      env: SYMFONY_VERSION="3.0.*"
+
 before_script:
-  - composer require --dev --no-interaction symfony/symfony:${SYMFONY_VERSION} sensio/framework-extra-bundle:${FRAMEWORK_EXTRA_BUNDLE_VERSION}
+  - echo "memory_limit=2G" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+  - composer require --dev --no-interaction symfony/symfony:${SYMFONY_VERSION}

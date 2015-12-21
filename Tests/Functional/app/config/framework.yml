@@ -9,7 +9,7 @@ framework:
     test: ~
     secret:        test
     router:
-        resource: "%kernel.root_dir%/%kernel.test_case%/routing.yml"
+        resource: '%kernel.root_dir%/%kernel.test_case%/routing.yml'
     session:
         storage_id: session.storage.mock_file
     templating:
