@@ -10,6 +10,7 @@
         <parameter key="mthaml.cache_warmer.class">MtHamlBundle\CacheWarmer\TemplateCacheCacheWarmer</parameter>
         <parameter key="mthaml.twig.extension.class">MtHaml\Support\Twig\Extension</parameter>
         <parameter key="mthaml.twig.loader.class">MtHaml\Support\Twig\Loader</parameter>
+        <parameter key="mthaml.command.debug_dump.class">MtHamlBundle\Command\DebugDumpCommand</parameter>
     </parameters>
 
     <services>
@@ -43,6 +44,11 @@
         <service id="mthaml.twig.extension" class="%mthaml.twig.extension.class%" public="false">
             <tag name="twig.extension" alias="mthaml" />
             <argument type="service" id="mthaml" />
+        </service>
+
+        <service id="mthaml.command.debug_dump" class="%mthaml.command.debug_dump.class%" public="false">
+            <tag name="console.command" />
+            <argument type="service" id="twig.loader" />
         </service>
 
     </services>
