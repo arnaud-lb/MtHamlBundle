@@ -2,13 +2,23 @@
 
 namespace MtHamlBundle\Command;
 
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use MtHaml\Support\Twig\Loader;
 
-class DebugDumpCommand extends ContainerAwareCommand
+class DebugDumpCommand extends Command
 {
+    private $loader;
+
+    public function __construct(Loader $loader)
+    {
+        parent::__construct();
+
+        $this->loader = $loader;
+    }
+
     public function configure()
     {
         $this
@@ -31,7 +41,7 @@ EOF
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $output->write(
-            $this->getContainer()->get('twig.loader')->getSource($input->getArgument('template-name'))
+            $this->loader->getSourceContext($input->getArgument('template-name'))
         );
     }
 }
